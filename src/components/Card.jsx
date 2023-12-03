@@ -86,9 +86,9 @@ export const Card = ({ item }) => {
       </TableCell>
       <TableCell>{item.product_name}</TableCell>
       <TableCell>{item.brand}</TableCell>
-      <TableCell>{item.price}</TableCell>
+      <TableCell>{item.price}$</TableCell>
       <TableCell>{item.quantity}</TableCell>
-      <TableCell>{item.total}</TableCell>
+      <TableCell>{item.total}$</TableCell>
       <StatusCell>
         {item.status !== "none" ? (
           <StatusShow
