@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { FaCheck, FaTimes, FaPrint } from "react-icons/fa";
+import { FaPrint } from "react-icons/fa";
+import { Card } from "./Card";
 
 const TableContainer = styled.div`
   margin: 10px 100px;
@@ -30,8 +31,9 @@ const AddItemButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  border-radius: 20px;
+
   margin-right: 16px;
+  border-radius: 20px;
   padding: 10px;
 `;
 
@@ -47,46 +49,6 @@ const TableWrapper = styled.table`
 const TableHeader = styled.th`
   padding: 8px;
   text-align: left;
-`;
-
-const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  border-bottom: grey solid 1px;
-`;
-
-const TableCell = styled.td`
-  padding: 8px;
-`;
-
-const StatusCell = styled(TableCell)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-const StatusShow = styled.button`
-  width: 80px;
-  height: 25px;
-`;
-
-const StatusButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-right: 8px;
-`;
-
-const EditButton = styled(StatusButton)`
-  margin-right: 8px; // Added margin between Edit and Check/Close
-`;
-
-const CheckIcon = styled(FaCheck)`
-  color: green;
-`;
-
-const CloseIcon = styled(FaTimes)`
-  color: red;
 `;
 
 const Table = () => {
@@ -120,43 +82,7 @@ const Table = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>
-                <img
-                  src={item.product_image}
-                  alt="Product"
-                  style={{ maxWidth: "50px" }}
-                />
-              </TableCell>
-              <TableCell>{item.product_name}</TableCell>
-              <TableCell>{item.brand}</TableCell>
-              <TableCell>{item.price}</TableCell>
-              <TableCell>{item.quantity}</TableCell>
-              <TableCell>{item.total}</TableCell>
-              <StatusCell>
-                {item.status !== "none" ? (
-                  <StatusShow
-                    bg={
-                      item.status === "approved"
-                        ? "#33eb91"
-                        : item.status === "missing"
-                        ? "orange"
-                        : item.status === "missing_urgent"
-                        ? "#f44336"
-                        : ""
-                    }
-                  >
-                    {item.status}
-                  </StatusShow>
-                ) : (
-                  <span style={{ marginLeft: "120px" }}></span>
-                )}
-
-                <CheckIcon />
-                <CloseIcon />
-                <EditButton> Edit </EditButton>
-              </StatusCell>
-            </TableRow>
+            <Card key={item.id} item={item} />
           ))}
         </tbody>
       </TableWrapper>
